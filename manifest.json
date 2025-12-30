@@ -1,0 +1,111 @@
+{
+  "manifest_version": 3,
+  "name": "Godfather",
+  "version": "2.0",
+  "description": "Godfather - Premium Stripe & 3DS Bypasser",
+  "permissions": [
+    "scripting",
+    "notifications",
+    "storage",
+    "proxy",
+    "declarativeNetRequest",
+    "tabs",
+    "downloads"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "data/countries.js",
+        "assets/fonts/godfather.TTF",
+        "models/*.ort",
+        "dist/*.wasm"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "background": {
+    "service_worker": "core/background-wrapper.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "utils/logger.js",
+        "utils/message-bridge.js",
+        "utils/deduplication.js",
+        "core/screenshot-handler-content.js",
+        "core/content.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "utils/fingerprint-spoof.js",
+        "utils/csp-remover.js",
+        "utils/logger.js",
+        "utils/message-bridge.js",
+        "utils/card-generator.js",
+        "utils/payload-manipulator.js",
+        "utils/card-storage.js",
+        "utils/deduplication.js",
+        "utils/decline-handler.js",
+        "core/settings.js",
+        "modules/banner.js",
+        "modules/version-banner.js",
+        "modules/notification.js",
+        "modules/captcha-detector.js",
+        "modules/captcha-solver.js",
+        "modules/hcaptcha-interceptor.js",
+        "modules/hcaptcha-injector.js",
+        "modules/captcha-handler.js",
+        "modules/3ds-handler.js",
+        "modules/payment-handler.js",
+        "modules/strict-screenshot-handler.js",
+        "modules/fetch-interceptor.js",
+        "modules/autofill.js",
+        "modules/button-auto-clicker.js",
+        "modules/stripe-detector.js",
+        "modules/payment-screenshot.js",
+        "modules/godfather-banner.js",
+        "modules/stripe-interceptor.js",
+        "modules/stripe-autofill.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true,
+      "world": "MAIN"
+    }
+  ],
+  "action": {
+    "default_icon": {
+      "16": "assets/icons/icon16.png",
+      "48": "assets/icons/icon48.png",
+      "128": "assets/icons/icon128.png"
+    }
+  },
+  "options_page": "ui/options.html",
+  "icons": {
+    "16": "assets/icons/icon16.png",
+    "48": "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  }
+}

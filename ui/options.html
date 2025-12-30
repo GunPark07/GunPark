@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GODFATHER ALPHA 1 - DASHBOARD</title>
+    <link rel="stylesheet" href="godfather.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <div class="logo-container">
+                    <img src="https://i.ibb.co/q3z63Hhz/logo.png" alt="Godfather">
+                </div>
+                <div class="header-info">
+                    <h1>GODFATHER</h1>
+                    <p class="version">ALPHA 1 | BYPASSER EDITION</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="card">
+            <div class="section-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                SYSTEM STATUS
+            </div>
+            <div class="toggle-container">
+                <span>Enable Godfather Bypasser</span>
+                <label class="switch">
+                    <input type="checkbox" id="statusToggle" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                BIN / CARD CONFIGURATION
+            </div>
+            <textarea id="binInput" rows="6" placeholder="cardNumber|month|year|cvv|email"></textarea>
+            <p style="font-size: 10px; color: #666; margin-top: 10px;">Cards are auto-saved. Format: 4111222233334444|12|2025|123|test@mail.com</p>
+        </div>
+
+        <div class="card">
+            <div class="section-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                REAL-TIME LOGS
+            </div>
+            <div id="logContainer" class="log-container">
+                <div class="log-entry"><span class="log-time">[SYSTEM]</span> <span class="log-type-info">Godfather Alpha 1 Initialized...</span></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-top: 15px; font-size: 12px;">
+                <span>TOTAL HITS: <b id="hitCount" style="color: #0f0;">0</b></span>
+                <button id="clearLogs" style="background: none; border: none; color: var(--godfather-gold); cursor: pointer; font-family: 'Cinzel', serif;">CLEAR LOGS</button>
+            </div>
+        </div>
+
+        <footer style="text-align: center; padding: 20px; font-size: 11px; color: #444;">
+            Developed By @diwazz | <a href="https://t.me/diwazz" style="color: #666;">Telegram</a>
+        </footer>
+    </div>
+    <script src="options.js"></script>
+</body>
+</html>

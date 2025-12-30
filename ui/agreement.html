@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GODFATHER ALPHA 1 - THE OATH</title>
+    <link rel="stylesheet" href="godfather.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #000;
+            overflow: hidden;
+            font-family: 'Cinzel', serif;
+            color: #d4af37;
+        }
+        .agreement-container {
+            width: 90%;
+            max-width: 500px;
+            background: #0a0a0a;
+            border: 2px solid #d4af37;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.2);
+            text-align: center;
+            position: relative;
+        }
+        .page { display: none; animation: fadeIn 0.5s; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        h2 { font-size: 24px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; }
+        p { line-height: 1.8; color: #ccc; text-align: justify; font-size: 14px; }
+        .credits { margin-top: 20px; font-size: 12px; color: #888; }
+        .credits a { color: #d4af37; text-decoration: none; }
+        .btn-container { margin-top: 40px; display: flex; justify-content: space-between; }
+        button {
+            background: transparent;
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            padding: 12px 25px;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        button:hover { background: #d4af37; color: #000; box-shadow: 0 0 15px #d4af37; }
+    </style>
+</head>
+<body>
+    <div class="agreement-container">
+        <div class="page active" id="page1">
+            <h2>THE OATH</h2>
+            <p>By entering this domain, you acknowledge that you are part of the Godfather family. Loyalty is our first rule. You agree to use this tool with absolute discretion. Any leak of this technology will be considered a betrayal of the highest order.</p>
+            <div class="btn-container">
+                <span></span>
+                <button onclick="nextPage(2)">I UNDERSTAND</button>
+            </div>
+        </div>
+        <div class="page" id="page2">
+            <h2>THE RISK</h2>
+            <p>The path of the Don is fraught with danger. You accept full responsibility for your actions. The Godfather provides the tools, but you pull the trigger. We are not responsible for any consequences, legal or otherwise, that arise from your operations.</p>
+            <div class="btn-container">
+                <button onclick="nextPage(1)">BACK</button>
+                <button onclick="nextPage(3)">I ACCEPT THE RISK</button>
+            </div>
+        </div>
+        <div class="page" id="page3">
+            <h2>THE LEGACY</h2>
+            <p>Omertà is the code of silence. You shall not speak of the Godfather to outsiders. You shall not reverse engineer, modify, or distribute this tool without the Don's blessing.</p>
+            <div class="credits">
+                Developed By: <b>@GauZann</b><br>
+                Telegram: <a href="https://t.me/GauZann" target="_blank">t.me/GauZann</a><br>
+                Version: <b>Alpha 1</b>
+            </div>
+            <div class="btn-container">
+                <button onclick="nextPage(2)">BACK</button>
+                <button onclick="acceptAll()">I SWEAR THE OATH</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function nextPage(page) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page' + page).classList.add('active');
+        }
+        function acceptAll() {
+            chrome.storage.local.set({ godfather_agreed: true }, () => {
+                window.location.href = 'options.html';
+            });
+        }
+    </script>
+</body>
+</html>
